@@ -77,16 +77,21 @@ function loadAllTodosToUI() {
 
 function addTodo(e) {
   const newTodo = todoInput.value.trim();
+  const todos = getTodosFromStorage(); 
 
   if (newTodo === "") {
     showAlert("danger", "Lütfen bir todo girin...");
-  } else {
+  }else if(todos.includes(newTodo)){
+    showAlert("warning", `Bu ${newTodo} zaten mevcut...`);
+  }
+  else {
     addTodoUI(newTodo);
     addTodoToStorage(newTodo);
     showAlert("success", "Todo başarıyla eklendi...");
   }
 
   e.preventDefault();
+
 }
 
 function getTodosFromStorage() {
