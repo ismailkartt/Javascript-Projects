@@ -23,6 +23,11 @@ class UI{
       }
       
       static displayMessages(message,type){
+
+          // Var olan mesajları kontrol et ve varsa kaldır
+          const existingAlerts = document.querySelectorAll(`.alert.alert-${type}`);
+          existingAlerts.forEach(alert => alert.remove());
+
           const cardBody = document.querySelectorAll(".card-body")[0];
           // Alert div'ini olusturma
           const div = document.createElement("div");
