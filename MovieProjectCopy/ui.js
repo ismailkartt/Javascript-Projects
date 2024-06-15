@@ -66,6 +66,16 @@ UI.prototype.showMovies = function(films){
         e.parentElement.parentElement.remove();
     }
 
+    UI.prototype.clearAllMovies = function(){
+        const filmList = document.getElementById("films");
+
+        while(filmList.firstElementChild !== null){
+            filmList.firstElementChild.remove();
+        }
+
+    }
+
+
 }
 
 

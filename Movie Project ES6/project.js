@@ -4,7 +4,7 @@ const directorElement = document.querySelector("#director");
 const urlElement = document.querySelector("#url");
 const cardbody = document.querySelectorAll(".card-body")[1];
 const clear = document.getElementById("clear-films");
-
+const searchEl = document.getElementById("search");
 
 
 // Tüm eventleri yükleme
@@ -19,6 +19,23 @@ function eventListeners(){
     });
     cardbody.addEventListener("click",deleteFilm);
     clear.addEventListener("click",clearAllFilms);
+    searchEl.addEventListener("keyup",searchForMovie);
+}
+
+
+function searchForMovie(e) {
+    const filterValue = e.target.value.toLowerCase();
+    const listItems = document.querySelectorAll("#films tr");
+
+    listItems.forEach(function(listItem) {
+        const title = listItem.children[1].textContent.toLowerCase(); // Film ismi
+        if (title.indexOf(filterValue) === -1) {
+            // Bulamadı
+            listItem.style.display = "none";
+        } else {
+            listItem.style.display = "table-row";
+        }
+    });
 }
 
 function addFilm(e){
